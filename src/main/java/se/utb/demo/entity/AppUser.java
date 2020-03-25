@@ -3,6 +3,7 @@ package se.utb.demo.entity;
 import javax.persistence.*;
 import java.time.LocalDate;
 import java.util.Objects;
+import java.util.Set;
 
 @Entity
 public class AppUser {
@@ -15,7 +16,18 @@ public class AppUser {
     @Column(unique = true)
     private String email;
     private LocalDate regDate;
-
+@ManyToMany(
+       // cascade = {CascadeType.MERGE, CascadeType.DETACH,CascadeType.REFRESH},
+      //  fetch = FetchType.LAZY
+        cascade = {CascadeType.MERGE},
+        fetch = FetchType.EAGER
+)
+@JoinTable(
+        name = "app_user_app_role",
+        joinColumns = @JoinColumn(name = "user_id"),
+        inverseJoinColumns = @JoinColumn(name = "role_id")
+)
+private Set<AppRole> roleSet;
     public AppUser(String firstName, String lastName, String password, String email, LocalDate regDate) {
         this.firstName = firstName;
         this.lastName = lastName;
@@ -68,6 +80,14 @@ public class AppUser {
 
     public void setRegDate(LocalDate regDate) {
         this.regDate = regDate;
+    }
+
+    public Set<AppRole> getRoleSet() {
+        return roleSet;
+    }
+
+    public void setRoleSet(Set<AppRole> roleSet) {
+        this.roleSet = roleSet;
     }
 
     @Override

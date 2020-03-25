@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+    <link rel="stylesheet" th:href="@{/webjars/bootstrap/css/bootstrap.css}" />
+    <link rel="stylesheet" th:href="@{/css/style.css}"/>
+    <script th:src="@{/webjars/jquery/jquery.min.js}"></script>
+    <script th:src="@{/webjars/popper.js/umd/popper.min.js}"></script>
+    <script th:src="@{/webjars/bootstrap/js/bootstrap.min.js}"></script>
+    <meta charset="UTF-8">
+    <title>Navigation</title>
+</head>
+<body>
+<nav th:fragment="navigation" class="navbar navbar-dark bg-dark">
+    <ul class="nav">
+        <li class="nav-item">
+            <a class="navbar-brand text-info" href="#">LOGO</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link text-info" href="#">Link 1</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link text-info" href="#">Link 2</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link text-info" href="#">Link 3</a>
+        </li>
+    </ul>
+    <form action="#" class="form-inline" method="post">
+        <div sec:authorize="isAuthenticated()">
+            <button class="btn btn-outline-info" type="submit" value="Logout">Logout</button>
+        </div>
+        <div sec:authorize="isAnonymous()">
+            <a class="btn btn-outline-info" href="#" value="Login">Login</a>
+        </div>
+    </form>
+</nav>
+</body>
+</html>

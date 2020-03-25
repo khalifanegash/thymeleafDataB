@@ -21,6 +21,7 @@ public class CreateAppUserForm {
     @Email(regexp = "^(\\D)+(\\w)*((\\.(\\w)+)?)+@(\\D)+(\\w)*((\\.(\\D)+(\\w)*)+)?(\\.)[a-z]{2,}$", message = "Your email is invalid")
     private String email;
 
+    private boolean admin;
     public String getFirstName() {
         return firstName;
     }
@@ -59,6 +60,12 @@ public class CreateAppUserForm {
 
     public void setEmail(String email) {
         this.email = email;
+    }
+    public boolean isAdmin(){
+        return admin;
+    }
+    public void setAdmin(){
+        this.admin = admin;
     }
 
 }
