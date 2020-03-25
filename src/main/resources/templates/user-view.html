@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <script defer th:src="@{/webjars/jquery/jquery.min.js}"></script>
+    <script defer th:src="@{/webjars/popper.js/umd/popper.min.js}"></script>
+    <script defer th:src="@{/webjars/bootstrap/js/bootstrap.min.js}"></script>
+    <link rel="stylesheet" th:href="@{/webjars/bootstrap/css/bootstrap.css}">
+    <link rel="stylesheet" th:href="@{/style.css}">
+    <meta charset="UTF-8">
+    <title>User view</title>
+</head>
+<body>
+<div class="container">
+    <div class="row">
+        <h2 th:text="${user.firstName}">Nisse:</h2>
+    </div>
+    <div class="row">
+        <div class="col-1">
+            <span>Name:</span>
+        </div>
+        <div class="col-11">
+            <span th:text="${user.firstName+' '+user.lastName}">Erik Svensson</span>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-1">
+            <span>Email:</span>
+        </div>
+        <div class="col-5">
+            <span th:text="${user.email}">erik.svensson@lexicon.se</span>
+        </div>
+        <div class="col-1">
+            <span>Registered:</span>
+        </div>
+        <div class="col-5">
+            <span th:text="${user.regDate}">2020-03-23</span>
+        </div>
+    </div>
+    <!--<a th:href="@{/order/details(id=3)}"> -->
+    <!-- https://www.baeldung.com/spring-thymeleaf-path-variables -->
+    <a class="btn btn-link" th:href="@{/users/{id}/update (id=${user.userId})}">Update</a>
+</div>
+
+
+</body>
+</html>
